@@ -1,6 +1,7 @@
 ﻿using DssProjectElephant.Data.Enum;
 using DssProjectElephant.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Diagnostics.Metrics;
 
 namespace DssProjectElephant.Data
 {
@@ -14,6 +15,29 @@ namespace DssProjectElephant.Data
 
                 context.Database.EnsureCreated();
 
+                List<Address> addresses = new List<Address>()
+                {
+                    new Address()
+                    {
+
+                        Name = "Charlotte",
+                        Country = "USA"
+                    },
+                    new Address()
+                    {
+                        Name = "Charlotte",
+                        Country = "Cannada"
+                    },
+                    new Address()
+                    {
+                        Name = "Michigan",
+                        Country = "USA"
+                    }
+                            
+
+
+                };
+
                 if (!context.Clubs.Any())
                 {
                     context.Clubs.AddRange(new List<Club>()
@@ -24,25 +48,19 @@ namespace DssProjectElephant.Data
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first cinema",
                             ClubCategory = ClubCategory.Academiclub,
-                            Address = new Address()
-                            {
-                                ID = 1234,
-                                Name = "Charlotte",
-                                Country = "USA"
-                            }
+                            Address = addresses[0]
+                            
+                            
                          },
                         new Club()
                         {
                             Name = "News Club 2",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first cinema",
-                            ClubCategory = ClubCategory. Journalism,
-                            Address = new Address()
-                            {
-                                ID = 5678,
-                                Name = "Charlotte",
-                                Country = "Cannada"
-                            }
+                            ClubCategory = ClubCategory.Journalism,
+                            Address = addresses[1]
+                            
+                            
                         },
                         new Club()
                         {
@@ -50,12 +68,9 @@ namespace DssProjectElephant.Data
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first club",
                             ClubCategory = ClubCategory.Publication,
-                            Address = new Address()
-                            {
-                                ID = 8901,
-                                Name = "Charlotte",
-                                Country = "USA"
-                            }
+                            Address = addresses[1]
+                            
+                            
                         },
                         new Club()
                         {
@@ -63,12 +78,10 @@ namespace DssProjectElephant.Data
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first club",
                             ClubCategory = ClubCategory.Academiclub,
-                            Address = new Address()
-                            {
-                                ID = 0987,
-                                Name = "Michigan",
-                                Country = "USA"
-                            }
+                            Address = addresses[2]
+                            
+                            
+                            
                         }
                     });
                     context.SaveChanges();
@@ -84,12 +97,7 @@ namespace DssProjectElephant.Data
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first race",
                             NewsCategory = NewsCategory.Articles,
-                            Address = new Address()
-                            {
-                                ID = 1234,
-                                Name = "Charlotte",
-                                Country = "USA"
-                            }
+                            Address = addresses[0]
                         },
                         new TheNews()
                         {
@@ -97,13 +105,9 @@ namespace DssProjectElephant.Data
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
                             Description = "This is the description of the first race",
                             NewsCategory = NewsCategory.LocalNews,
-                            AddressId = 5,
-                            Address = new Address()
-                            {
-                                ID = 5678,
-                                Name = "Charlotte",
-                                Country = "Cannada"
-                            }
+                           
+                            Address = addresses[1]
+                            
                         }
                     });
                     context.SaveChanges();

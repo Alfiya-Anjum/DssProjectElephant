@@ -12,7 +12,7 @@ namespace DssProjectElephant.Models
         public override string Id { get; set; }
         public int? Users { get; set; }
         [ForeignKey("Address")]
-        public int AddressId { get; set; }
+        public int? AddressId { get; set; }
         public Address? Address { get; set; }
         public ICollection<Club> Clubs { get; set; }
         public ICollection<TheNews> TheNews { get; set; }

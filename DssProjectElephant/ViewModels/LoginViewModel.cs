@@ -9,6 +9,6 @@ namespace DssProjectElephant.ViewModels
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        public string EmailAddress { get; internal set; }
+        //public string EmailAddress { get; internal set; }
     }
 }

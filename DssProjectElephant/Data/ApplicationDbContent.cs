@@ -17,11 +17,11 @@
 using DssProjectElephant.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using DssProjectElephant.Migrations;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace DssProjectElephant.Data
 {
-    public class ApplicationDbContent : DbContext
+    public class ApplicationDbContent : IdentityDbContext<AppUser>
     {
         public ApplicationDbContent(DbContextOptions<ApplicationDbContent> options) : base(options)
         {

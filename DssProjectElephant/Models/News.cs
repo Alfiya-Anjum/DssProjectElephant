@@ -6,6 +6,7 @@ namespace DssProjectElephant.Models
 {
     public class TheNews
     {
+        
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }

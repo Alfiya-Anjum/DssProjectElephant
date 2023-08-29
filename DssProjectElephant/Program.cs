@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Data.Entity;
 
 internal class Program
 {
@@ -19,18 +20,17 @@ internal class Program
         builder.Services.AddControllersWithViews();
         builder.Services.AddScoped<IClubRepository, ClubRepository>();
         builder.Services.AddScoped<INewsRepository, NewsRepository>();
+        builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         builder.Services.AddDbContext<ApplicationDbContent>(options =>
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
-
+        builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContent>();
+        builder.Services.AddMemoryCache();
+        builder.Services.AddSession();
         var app = builder.Build();
 
-        if (args.Length == 1 && args[0].ToLower() == "seeddata")
-        {
-            //Seed.SeedUsersAndRolesAsync(app);
-            Seed.SeedData(app);
-        }
+        
 
         if (!app.Environment.IsDevelopment())
         {
@@ -42,6 +42,7 @@ internal class Program
         app.UseStaticFiles();
         app.UseRouting();
         app.UseAuthorization();
+        app.UseAuthentication();
 
         app.MapControllerRoute(
             name: "default",
@@ -57,7 +58,10 @@ internal class Program
             pattern: "Club/Edit/{id}",
             defaults: new { controller = "Club", action = "Edit" });
 
+        Seed.SeedData(app);
+
         app.Run();
+        
     }
 }
 

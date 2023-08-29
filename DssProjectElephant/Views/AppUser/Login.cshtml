@@ -1,5 +1,4 @@
-﻿@page
-@using DssProjectElephant.ViewModels;
+﻿@using DssProjectElephant.ViewModels;
 @model LoginViewModel
 @{
     ViewData["Title"] = "Login";
@@ -16,10 +15,10 @@
         }
         <div class="row">
             <div class="col-md-8 offset-2">
-                <form method="post">
+                <form asp-action="Login">
                     <div class="form-group">
-                        <label for="EmailAddress" class="control-label">Email Address</label>
-                        <input id="EmailAddress" name="EmailAddress" class="form-control" value="@Model.EmailAddress" />
+                        <label for="UserName" class="control-label">Email Address</label>
+                        <input id="UserName" name="UserName" class="form-control" value="@Model.UserName" />
                     </div>
                     <div class="form-group">
                         <label for="Password" class="control-label">Password</label>
